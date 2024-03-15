@@ -1,8 +1,6 @@
-#!/usr/bin/python3
-"""
-Script that queries subscribers on a given Reddit subreddit.
-"""
+#!/usr/bin/env python3
 
+import sys
 import requests
 
 def number_of_subscribers(subreddit):
@@ -21,8 +19,12 @@ def number_of_subscribers(subreddit):
         print("Error:", e)
         return 0
 
-# Example usage:
-subreddit_name = "learnpython"
-subscribers_count = number_of_subscribers(subreddit_name)
-print(f"The subreddit '{subreddit_name}' has {subscribers_count} subscribers.")
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: ./reddit_subscribers.py <subreddit>")
+        sys.exit(1)
+
+    subreddit_name = sys.argv[1]
+    subscribers_count = number_of_subscribers(subreddit_name)
+    print(f"The subreddit '{subreddit_name}' has {subscribers_count} subscribers.")
 
